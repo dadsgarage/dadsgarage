@@ -1,0 +1,3 @@
+ARG MINIDEB_VERSION=buster
+
+FROM bitnami/minideb:${MINIDEB_VERSION}
