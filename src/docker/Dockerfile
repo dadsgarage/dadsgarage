@@ -9,7 +9,8 @@ USER root
 # Install Python3 and Pip
 RUN install_packages \
   python3 \
-  python3-pip
+  python3-pip \
+  python3-setuptools
 
 # Quit being root for safety.
 USER bitnami
