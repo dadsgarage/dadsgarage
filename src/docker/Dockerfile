@@ -19,4 +19,4 @@ USER bitnami
 # RUN python3 -m pip install --user pipx \
 #   && python3 -m pipx ensurepath
 
-RUN pip3 install --user pipx && pipx ensurepath
+RUN pip3 install --user pipx && ~/.local/bin/pipx ensurepath
