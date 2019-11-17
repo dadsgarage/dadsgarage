@@ -11,10 +11,8 @@ RUN install_packages \
   python3 \
   python3-pip
 
-# Quit being root for safety. Ref: https://medium.com/@mccode/processes-in-containers-should-not-run-as-root-2feae3f0df3b
-RUN groupadd -g 999 dadsgarage \
-  && useradd -r -u 999 -g dadsgarage dadsgarage
-USER dadsgarage
+# Quit being root for safety.
+USER bitnami
 
 # Install pipx for safer pip installations of tools. Ref: https://pipxproject.github.io/pipx/
 RUN python3 -m pip install --user pipx \
