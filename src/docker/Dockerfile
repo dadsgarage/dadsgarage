@@ -16,5 +16,5 @@ RUN install_packages \
 USER bitnami
 
 # Install pipx for safer pip installations of tools. Ref: https://pipxproject.github.io/pipx/
-RUN python3 -m pip install --user pipx \
+RUN pip3 install --user pipx \
   && pipx ensurepath
