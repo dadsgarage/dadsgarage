@@ -24,6 +24,7 @@ RUN install_packages \
   python3 \
   python3-pip \
   python3-setuptools \
+  python3-venv \
   unzip \
   && update-locale LANG=C.UTF-8 LC_MESSAGES=POSIX \
   && locale-gen en_US.UTF-8 \
@@ -46,7 +47,12 @@ RUN chmod +x /tini
 USER dadsgarage
 
 # Install pipx for safer pip installations of tools. Ref: https://pipxproject.github.io/pipx/
+ENV PATH="${PATH}:~/.local/bin"
 RUN python3 -m pip install --user pipx \
   && pipx ensurepath
+
+# Install pre-commit
+ENV PRE_COMMIT_VERSION=1.20.0
+RUN pipx install pre-commit==${PRE_COMMIT_VERSION}
 
 ENTRYPOINT ["/tini", "--"]
