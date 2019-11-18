@@ -12,9 +12,6 @@ jobs:
   deliver:
     runs-on: ubuntu-latest
 
-    env:
-      DOCKER_REGISTRY: docker.pkg.github.com
-
     steps:
       - uses: actions/checkout@v1
 
@@ -28,7 +25,7 @@ jobs:
       - name: build image
         id: build_image
         env:
-          GHIMG: ${DOCKER_REGISTRY}/dadsgarage/dadsgarage/dadsgarage:${{ steps.branch_name.outputs.SOURCE_NAME }}
+          GHIMG: docker.pkg.github.com/dadsgarage/dadsgarage/dadsgarage:${{ steps.branch_name.outputs.SOURCE_NAME }}
         run: |
           echo ::set-output name=GHIMG::${GHIMG}
           docker build src/docker -t ${GHIMG}
