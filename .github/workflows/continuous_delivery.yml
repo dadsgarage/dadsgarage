@@ -32,7 +32,7 @@ jobs:
 
       - name: docker login
         id: docker_login
-        run: echo "$GITHUB_TOKEN" | docker login -u github-actions --password-stdin "$DOCKER_REGISTRY"
+        run: echo "$GITHUB_TOKEN" | docker login -u github-actions --password-stdin docker.pkg.github.com
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
