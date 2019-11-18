@@ -1,0 +1,45 @@
+name: Continuous Delivery
+
+on:
+  push:
+    branches:
+      - master
+      - feature/add_ci
+    tags:
+      - "*"
+
+jobs:
+  deliver:
+    runs-on: ubuntu-latest
+
+    env:
+      DOCKER_REGISTRY: docker.pkg.github.com
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Get branch name
+        id: branch_name
+        run: |
+          echo ::set-output name=SOURCE_NAME::${GITHUB_REF#refs/*/}
+          echo ::set-output name=SOURCE_BRANCH::${GITHUB_REF#refs/heads/}
+          echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
+
+      - name: build image
+        id: build_image
+        env:
+          GHIMG: ${DOCKER_REGISTRY}/dadsgarage/dadsgarage/dadsgarage:${{ steps.branch_name.outputs.SOURCE_NAME }}
+        run: |
+          echo ::set-output name=GHIMG::${GHIMG}
+          docker build src/docker -t ${GHIMG}
+
+      - name: docker login
+        id: docker_login
+        run: echo "$GITHUB_TOKEN" | docker login -u github-actions --password-stdin "$DOCKER_REGISTRY"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: docker push
+        id: docker_push
+        run: |
+          docker push "${{ steps.build_image.outputs.GHIMG }}"
