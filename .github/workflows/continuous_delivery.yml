@@ -25,10 +25,11 @@ jobs:
       - name: build image
         id: build_image
         env:
-          GHIMG: docker.pkg.github.com/dadsgarage/dadsgarage/dadsgarage:${{ steps.branch_name.outputs.SOURCE_NAME }}
+          GHREPO: docker.pkg.github.com/dadsgarage/dadsgarage/dadsgarage
+          SOURCE_NAME: ${{ steps.branch_name.outputs.SOURCE_NAME }}
         run: |
-          echo ::set-output name=GHIMG::${GHIMG//\//_}
-          docker build src/docker -t ${GHIMG//\//_}
+          echo ::set-output name=GHIMG::${GHREPO}:${SOURCE_NAME//\//_}
+          docker build src/docker -t ${GHREPO}:${SOURCE_NAME//\//_}
 
       - name: docker login
         id: docker_login
