@@ -3,10 +3,7 @@ name: Continuous Delivery
 on:
   push:
     branches:
-      - master
-      - feature/add_ci
-    tags:
-      - "*"
+      - not-a-real-branch
 
 jobs:
   deliver:
