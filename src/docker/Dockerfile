@@ -43,11 +43,6 @@ ENV TINI_VERSION v0.18.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 RUN chmod +x /tini
 
-# GitHub Actions changes the $HOME environment variable to /github/home, so set up a symlink
-RUN mkdir -p /github \
-  && chown dadsgarage:dadsgarage /github \
-  && ln -s /home/dadsgarage /github/home
-
 # Quit being root for safety.
 USER dadsgarage
 
