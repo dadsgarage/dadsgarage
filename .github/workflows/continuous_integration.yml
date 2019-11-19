@@ -7,9 +7,7 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     container:
-      image: dadsgarage/dadsgarage:0.1.0
-      env:
-        HOME: "/home/dadsgarage"
+      image: dadsgarage/dadsgarage:feature_add_pre_commit_validation
 
     steps:
       - name: pre-commit
