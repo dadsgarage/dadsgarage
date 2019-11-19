@@ -8,9 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: dadsgarage/dadsgarage:0.1.0
+
     steps:
       - name: pre-commit
         run: |
+          whoami
           pre-commit install
           pre-commit run -a
 
