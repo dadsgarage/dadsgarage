@@ -4,17 +4,17 @@ on:
   - pull_request
 
 jobs:
-  validate:
-    runs-on: ubuntu-latest
-    container:
-      image: dadsgarage/dadsgarage:feature_add_pre_commit_validation
+  # validate:
+  #   runs-on: ubuntu-latest
+  #   container:
+  #     image: dadsgarage/dadsgarage:feature_add_pre_commit_validation
 
-    steps:
-      - name: pre-commit
-        run: |
-          whoami
-          pre-commit install
-          pre-commit run -a
+  #   steps:
+  #     - name: pre-commit
+  #       run: |
+  #         whoami
+  #         pre-commit install
+  #         pre-commit run -a
 
   build:
     runs-on: ubuntu-latest
