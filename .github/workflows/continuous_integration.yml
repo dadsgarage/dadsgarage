@@ -10,8 +10,10 @@ jobs:
       image: dadsgarage/dadsgarage:0.2.2
 
     steps:
-      - name: pre-commit
+      - uses: actions/checkout@v1
+      - name: Run pre-commit validations
         run: |
+          pwd
           ls -la
           env
           pre-commit install
