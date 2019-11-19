@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: pre-commit
         run: |
+          ls -la
+          env
           pre-commit install
           pre-commit run -a
 
