@@ -6,9 +6,10 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    container:
+      image: dadsgarage/dadsgarage:0.1.0
     steps:
       - name: pre-commit
-        container: dadsgarage/dadsgarage:0.1.0
         run: |
           pre-commit install
           pre-commit run -a
