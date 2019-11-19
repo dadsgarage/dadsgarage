@@ -25,7 +25,7 @@ jobs:
       - name: build image
         id: build_image
         env:
-          GHREPO: docker.pkg.github.com/dadsgarage/dadsgarage/dadsgarage
+          GHREPO: dadsgarage/dadsgarage
           SOURCE_NAME: ${{ steps.branch_name.outputs.SOURCE_NAME }}
         run: |
           echo ::set-output name=GHIMG::${GHREPO}:${SOURCE_NAME//\//_}
@@ -33,9 +33,10 @@ jobs:
 
       - name: docker login
         id: docker_login
-        run: echo "$GITHUB_TOKEN" | docker login -u github-actions --password-stdin docker.pkg.github.com
+        run: echo "${DOCKER_HUB_ACCESS_TOKEN}" | docker login -u "${DOCKER_HUB_USERNAME}" --password-stdin
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+          DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
       - name: docker push
         id: docker_push
