@@ -52,7 +52,7 @@ RUN mkdir -p /github \
 USER dadsgarage
 
 # Install pipx for safer pip installations of tools. Ref: https://pipxproject.github.io/pipx/
-ENV PATH="${PATH}:~/.local/bin"
+ENV PATH="${PATH}:/home/dadsgarage/.local/bin"
 RUN python3 -m pip install --user pipx \
   && pipx ensurepath
 
