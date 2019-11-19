@@ -1,0 +1,41 @@
+name: Continuous Delivery
+
+on:
+  push:
+    branches:
+      - not-a-real-branch
+
+jobs:
+  deliver:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Get branch name
+        id: branch_name
+        run: |
+          echo ::set-output name=SOURCE_NAME::${GITHUB_REF#refs/*/}
+          echo ::set-output name=SOURCE_BRANCH::${GITHUB_REF#refs/heads/}
+          echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
+
+      - name: build image
+        id: build_image
+        env:
+          GHREPO: dadsgarage/dadsgarage
+          SOURCE_NAME: ${{ steps.branch_name.outputs.SOURCE_NAME }}
+        run: |
+          echo ::set-output name=GHIMG::${GHREPO}:${SOURCE_NAME//\//_}
+          docker build src/docker -t ${GHREPO}:${SOURCE_NAME//\//_}
+
+      - name: docker login
+        id: docker_login
+        run: echo "${DOCKER_HUB_ACCESS_TOKEN}" | docker login -u "${DOCKER_HUB_USERNAME}" --password-stdin
+        env:
+          DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+          DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      - name: docker push
+        id: docker_push
+        run: |
+          docker push "${{ steps.build_image.outputs.GHIMG }}"
