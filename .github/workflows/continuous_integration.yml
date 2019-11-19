@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: dadsgarage/dadsgarage:0.1.0
+      env:
+        HOME: "/home/dadsgarage"
 
     steps:
       - name: pre-commit
