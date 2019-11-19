@@ -4,11 +4,21 @@ on:
   - pull_request
 
 jobs:
+  # validate:
+  #   runs-on: ubuntu-latest
+  #   container:
+  #     image: dadsgarage/dadsgarage:feature_add_pre_commit_validation
+
+  #   steps:
+  #     - name: pre-commit
+  #       run: |
+  #         whoami
+  #         pre-commit install
+  #         pre-commit run -a
+
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v1
-
       - name: Build the Docker image
         run: docker build src/docker -t dadsgarage:local
