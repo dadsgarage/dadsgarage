@@ -40,7 +40,7 @@ RUN  sed -i 's/^PASS_MAX_DAYS.*/PASS_MAX_DAYS    90/' /etc/login.defs \
   && sed -i 's/sha512/sha512 minlen=8/' /etc/pam.d/common-password
 
 # Add Tini. Ref: https://github.com/krallin/tini
-ENV TINI_VERSION v0.18.0
+ARG TINI_VERSION=v0.18.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 RUN chmod +x /tini
 
@@ -53,7 +53,7 @@ RUN python3 -m pip install --user pipx \
   && pipx ensurepath
 
 # Install pre-commit
-ENV PRE_COMMIT_VERSION=1.20.0
+ARG PRE_COMMIT_VERSION=1.20.0
 RUN pipx install pre-commit==${PRE_COMMIT_VERSION}
 
 ENTRYPOINT ["/tini", "--"]
