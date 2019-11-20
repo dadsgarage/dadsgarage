@@ -19,6 +19,7 @@ RUN install_packages \
   gosu \
   libaio1 \
   locales \
+  openssh-client \
   pkg-config \
   procps \
   python3 \
