@@ -56,4 +56,8 @@ RUN python3 -m pip install --user pipx \
 ARG PRE_COMMIT_VERSION=1.20.0
 RUN pipx install pre-commit==${PRE_COMMIT_VERSION}
 
+# Install AWS CLI
+ARG AWS_CLI_VERSION=1.16.287
+RUN pipx install awscli==${AWS_CLI_VERSION}
+
 ENTRYPOINT ["/tini", "--"]
