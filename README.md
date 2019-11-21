@@ -64,6 +64,36 @@ This will build the container with pre-commit v1.19.0 instead of whatever is spe
 
 > The list of ARGs are scattered throughout the Dockerfile in order to preserve caching. If all of the ARGS were collected at the beginning, each change to the version of any tool would bust the whole cache. Eventually we will extract all default versions into a different file and bring them in some other way, but we don't want to introduce a dependency on a build tool like `make` yet. We're definitely heading in that direction though.
 
+## Installed Software
+
+The following is a mostly complete list of the software installed in Dad's Garage. Whatever is already installed in the base image (which is [bitnami/minideb:buster](https://hub.docker.com/r/bitnami/minideb/)) is not listed.
+
+### Debian Packages
+
+- [build-essential](https://packages.debian.org/buster/build-essential)
+- [ca-certificates](https://packages.debian.org/buster/ca-certificates)
+- [curl](https://packages.debian.org/buster/curl)
+- [dirmngr](https://packages.debian.org/buster/dirmngr)
+- [git](https://packages.debian.org/buster/git)
+- [gnupg](https://packages.debian.org/buster/gnupg)
+- [gosu](https://packages.debian.org/buster/gosu)
+- [libaio1](https://packages.debian.org/buster/gosu)
+- [locales](https://packages.debian.org/buster/locales)
+- [openssh-client](https://packages.debian.org/buster/openssh-client)
+- [pkg-config](https://packages.debian.org/buster/pkg-config)
+- [procps](https://packages.debian.org/buster/procps)
+- [python3](https://packages.debian.org/buster/python3)
+- [python3-pip](https://packages.debian.org/buster/python3-pip)
+- [python3-setuptools](https://packages.debian.org/buster/python3-setuptools)
+- [python3-venv](https://packages.debian.org/buster/python3-venv)
+- [unzip](https://packages.debian.org/buster/unzip)
+
+### Other
+
+- [pipx](https://github.com/pipxproject/pipx)
+- [pre-commit](https://pre-commit.com/)
+- [tini](https://github.com/krallin/tini)
+
 ## Contributing
 
 Pull requests are welcome! If you are going to contribute to this project you should
