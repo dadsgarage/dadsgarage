@@ -90,6 +90,7 @@ The following is a mostly complete list of the software installed in Dad's Garag
 
 ### Other
 
+- [AWS CLI](https://aws.amazon.com/cli/)
 - [pipx](https://github.com/pipxproject/pipx)
 - [pre-commit](https://pre-commit.com/)
 - [tini](https://github.com/krallin/tini)
