@@ -48,6 +48,8 @@ docker run -it --rm \
 
 Now we're talkin'! We've got a bash shell inside the container, with the current working directory, as well as $HOME/.ssh for connecting with the git repo using your SSH key, and $HOME/.cache for caching pre-commit's environments so you don't have to build them every time. This is a command that you can alias or create a shell script for in your path so you can run it easily.
 
+For more examples of how to use tools installed in the container, see the [examples](examples) folder.
+
 ### Continuous Integration
 
 Work in progress, check back later.
@@ -90,6 +92,7 @@ The following is a mostly complete list of the software installed in Dad's Garag
 
 ### Other
 
+- [aws-cli](https://aws.amazon.com/cli/)
 - [pipx](https://github.com/pipxproject/pipx)
 - [pre-commit](https://pre-commit.com/)
 - [tini](https://github.com/krallin/tini)
