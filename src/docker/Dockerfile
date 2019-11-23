@@ -7,9 +7,10 @@ WORKDIR /
 # Need root to do rooty things
 USER root
 
-# Install a bunch of packages, update the locale for container-optimized settings, and add a user so we aren't stuck with using root.
+# Install debian apt-get packages
 # Some of this is lifted from bitnami/minideb-extras
 RUN install_packages \
+  apt-transport-https \
   build-essential \
   ca-certificates \
   curl \
@@ -26,8 +27,10 @@ RUN install_packages \
   python3-pip \
   python3-setuptools \
   python3-venv \
-  unzip \
-  && update-locale LANG=C.UTF-8 LC_MESSAGES=POSIX \
+  unzip
+
+# Update the locale for container-optimized settings, and add a user so we aren't stuck with using root.
+RUN update-locale LANG=C.UTF-8 LC_MESSAGES=POSIX \
   && locale-gen en_US.UTF-8 \
   && DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales \
   && useradd -ms /bin/bash dadsgarage
@@ -44,6 +47,12 @@ ARG TINI_VERSION=v0.18.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 RUN chmod +x /tini
 
+# Install kubectl
+ARG KUBECTL_VERSION=1.16.3-00
+RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
+  echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list && \
+  install_packages kubectl=${KUBECTL_VERSION}
+
 # Quit being root for safety.
 USER dadsgarage
 
@@ -59,5 +68,7 @@ RUN pipx install pre-commit==${PRE_COMMIT_VERSION}
 # Install AWS CLI
 ARG AWS_CLI_VERSION=1.16.287
 RUN pipx install awscli==${AWS_CLI_VERSION}
+
+USER root
 
 ENTRYPOINT ["/tini", "--"]
