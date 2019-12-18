@@ -89,6 +89,7 @@ The following is a mostly complete list of the software installed in Dad's Garag
 - [python3-setuptools](https://packages.debian.org/buster/python3-setuptools)
 - [python3-venv](https://packages.debian.org/buster/python3-venv)
 - [unzip](https://packages.debian.org/buster/unzip)
+- [jq](https://stedolan.github.io/jq)
 
 ### Other
 
