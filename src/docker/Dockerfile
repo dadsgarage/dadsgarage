@@ -18,6 +18,7 @@ RUN install_packages \
   git \
   gnupg \
   gosu \
+  jq \
   libaio1 \
   locales \
   openssh-client \
@@ -27,8 +28,7 @@ RUN install_packages \
   python3-pip \
   python3-setuptools \
   python3-venv \
-  unzip \
-  jq
+  unzip
 
 # Update the locale for container-optimized settings, and add a user so we aren't stuck with using root.
 RUN update-locale LANG=C.UTF-8 LC_MESSAGES=POSIX \
