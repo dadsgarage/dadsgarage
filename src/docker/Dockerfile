@@ -88,6 +88,14 @@ ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TE
 RUN unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin/ && \
     rm -f terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 
+# Install Azure cli
+ARG AZURE_CLI=2.0.78-1~buster
+RUN curl -sL https://packages.microsoft.com/keys/microsoft.asc | \
+    gpg --dearmor > /etc/apt/trusted.gpg.d/microsoft.asc.gpg && \
+    echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ buster main" | \
+    tee -a /etc/apt/sources.list.d/azure-cli.list && \
+    install_packages azure-cli=${AZURE_CLI}
+
 # Quit being root for safety.
 USER dadsgarage
 
