@@ -79,6 +79,7 @@ The following is a mostly complete list of the software installed in Dad's Garag
 - [git](https://packages.debian.org/buster/git)
 - [gnupg](https://packages.debian.org/buster/gnupg)
 - [gosu](https://packages.debian.org/buster/gosu)
+- [jq](https://stedolan.github.io/jq)
 - [libaio1](https://packages.debian.org/buster/gosu)
 - [locales](https://packages.debian.org/buster/locales)
 - [openssh-client](https://packages.debian.org/buster/openssh-client)
@@ -89,7 +90,6 @@ The following is a mostly complete list of the software installed in Dad's Garag
 - [python3-setuptools](https://packages.debian.org/buster/python3-setuptools)
 - [python3-venv](https://packages.debian.org/buster/python3-venv)
 - [unzip](https://packages.debian.org/buster/unzip)
-- [jq](https://stedolan.github.io/jq)
 
 ### Other
 
