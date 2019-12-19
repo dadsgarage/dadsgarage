@@ -53,6 +53,12 @@ RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add 
   echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list && \
   install_packages kubectl=${KUBECTL_VERSION}
 
+ARG K9S_VERSION=0.9.3
+RUN curl -LO https://github.com/derailed/k9s/releases/download/${K9S_VERSION}/k9s_${K9S_VERSION}_Linux_x86_64.tar.gz && \
+  tar -C /usr/local/bin -xzvf k9s_${K9S_VERSION}_Linux_x86_64.tar.gz k9s && \
+  chmod +x /usr/local/bin/k9s && \
+  rm -rf k9s_${K9S_VERSION}_Linux_x86_64.tar.gz
+
 # Quit being root for safety.
 USER dadsgarage
 
