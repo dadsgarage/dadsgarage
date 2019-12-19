@@ -79,7 +79,7 @@ The following is a mostly complete list of the software installed in Dad's Garag
 - [git](https://packages.debian.org/buster/git)
 - [gnupg](https://packages.debian.org/buster/gnupg)
 - [gosu](https://packages.debian.org/buster/gosu)
-- [jq](https://stedolan.github.io/jq)
+- [jq](https://packages.debian.org/buster/jq) ([docs](https://stedolan.github.io/jq))
 - [libaio1](https://packages.debian.org/buster/gosu)
 - [locales](https://packages.debian.org/buster/locales)
 - [openssh-client](https://packages.debian.org/buster/openssh-client)
@@ -94,10 +94,14 @@ The following is a mostly complete list of the software installed in Dad's Garag
 ### Other
 
 - [aws-cli](https://aws.amazon.com/cli/)
+- [azure-cli](https://docs.microsoft.com/en-us/cli/azure/get-started-with-azure-cli)
 - [k9s](https://github.com/derailed/k9s)
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/)
 - [pipx](https://github.com/pipxproject/pipx)
+- [helm 2](https://v2.helm.sh/docs/)
+- [helm 3](https://helm.sh/docs/)
 - [pre-commit](https://pre-commit.com/)
+- [terraform](https://www.terraform.io/docs/commands/index.html)
 - [tini](https://github.com/krallin/tini)
 
 ## Contributing
