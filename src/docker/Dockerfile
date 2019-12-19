@@ -112,12 +112,14 @@ RUN pipx install pre-commit==${PRE_COMMIT_VERSION}
 ARG AWS_CLI_VERSION=1.16.287
 RUN pipx install awscli==${AWS_CLI_VERSION}
 
-#set helm aliases
+# helm 2 setup
 ARG HELMDIFF_VERSION=v3.0.0-rc.7
 RUN helm2 init --client-only && \
     helm2 plugin install https://github.com/databus23/helm-diff --version ${HELMDIFF_VERSION} && \
-    helm plugin install https://github.com/databus23/helm-diff --version ${HELMDIFF_VERSION} && \
     alias helmfile2="helmfile --helm-binary helm2"
+
+# helm 3 setup
+RUN helm plugin install https://github.com/databus23/helm-diff --version ${HELMDIFF_VERSION}
 
 WORKDIR /home/dadsgarage
 
