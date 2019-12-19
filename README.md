@@ -105,3 +105,11 @@ Pull requests are welcome! If you are going to contribute to this project you sh
 - Have [pre-commit](https://pre-commit.com/) installed
 - Install the pre-commit hooks by running `pre-commit install` in this directory
 - Run `pre-commit run -a` if the CI build isn't passing. The CI pipeline runs `pre-commit run -a` and fails if any of the checks fail.
+
+### Dad's Garage CI/CD
+
+Pull Requests are not automatically run through the Codefresh pipeline. A maintainer must put `/test` in a comment on the PR for the pipeline run to trigger.
+
+Public build logs for Pull Request pipelines can be found [here](https://g.codefresh.io/public/accounts/rothandrew/pipelines/5dd4666e751f051a7ff8666e).
+
+The repo that contains the codefresh YAML pipeline for this project is [here](https://github.com/dadsgarage/cf-pipelines).
