@@ -93,6 +93,7 @@ The following is a mostly complete list of the software installed in Dad's Garag
 ### Other
 
 - [aws-cli](https://aws.amazon.com/cli/)
+- [k9s](https://github.com/derailed/k9s)
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/)
 - [pipx](https://github.com/pipxproject/pipx)
 - [pre-commit](https://pre-commit.com/)

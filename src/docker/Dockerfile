@@ -75,6 +75,6 @@ RUN pipx install pre-commit==${PRE_COMMIT_VERSION}
 ARG AWS_CLI_VERSION=1.16.287
 RUN pipx install awscli==${AWS_CLI_VERSION}
 
-USER root
+WORKDIR /home/dadsgarage
 
 ENTRYPOINT ["/tini", "--"]
