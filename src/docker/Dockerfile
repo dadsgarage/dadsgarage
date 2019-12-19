@@ -84,8 +84,8 @@ RUN curl -sOL https://github.com/roboll/helmfile/releases/download/${HELMFILE_VE
 
 # Install Terraform
 ARG TERRAFORM_VERSION=0.12.18
-ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip ./
-RUN unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin/ && \
+RUN curl -sOL https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
+    unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin/ && \
     rm -f terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 
 # Install Azure cli
