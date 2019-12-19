@@ -64,17 +64,17 @@ RUN curl -LO https://github.com/derailed/k9s/releases/download/${K9S_VERSION}/k9
 ARG HELM2_VERSION=v2.16.1
 RUN curl -LO https://get.helm.sh/helm-${HELM2_VERSION}-linux-amd64.tar.gz && \
     tar -zxvf helm-${HELM2_VERSION}-linux-amd64.tar.gz && \
-    mv linux-amd64/helm /usr/local/bin/ && \
-    chmod +x /usr/local/bin/helm && \
+    mv linux-amd64/helm /usr/local/bin/helm2 && \
+    chmod +x /usr/local/bin/helm2 && \
     rm -rf linux-amd64 helm-${HELM2_VERSION}-linux-amd64.tar.gz
 
 # Install Helm 3
-ARG HELM2_VERSION=v3.0.2
-RUN curl -LO https://get.helm.sh/helm-${HELM2_VERSION}-linux-amd64.tar.gz && \
-    tar -zxvf helm-${HELM2_VERSION}-linux-amd64.tar.gz && \
-    mv linux-amd64/helm /usr/local/bin/helm3 && \
-    chmod +x /usr/local/bin/helm3 && \
-    rm -rf linux-amd64 helm-${HELM2_VERSION}-linux-amd64.tar.gz
+ARG HELM3_VERSION=v3.0.2
+RUN curl -LO https://get.helm.sh/helm-${HELM3_VERSION}-linux-amd64.tar.gz && \
+    tar -zxvf helm-${HELM3_VERSION}-linux-amd64.tar.gz && \
+    mv linux-amd64/helm /usr/local/bin/helm && \
+    chmod +x /usr/local/bin/helm && \
+    rm -rf linux-amd64 helm-${HELM3_VERSION}-linux-amd64.tar.gz
 
 # Install helmfile
 ARG HELMFILE_VERSION=v0.97.0
@@ -113,12 +113,11 @@ ARG AWS_CLI_VERSION=1.16.287
 RUN pipx install awscli==${AWS_CLI_VERSION}
 
 #set helm aliases
-ARG HELMDIFF_HELM2_VERSION=v2.11.0+5
-ARG HELMDIFF_HELM3_VERSION=v3.0.0-rc.7
-RUN helm init --client-only && \
-    helm plugin install https://github.com/databus23/helm-diff --version ${HELMDIFF_HELM2_VERSION} && \
-    helm3 plugin install https://github.com/databus23/helm-diff --version ${HELMDIFF_HELM3_VERSION} && \
-    alias helmfile3="helmfile --helm-binary helm3"
+ARG HELMDIFF_VERSION=v3.0.0-rc.7
+RUN helm2 init --client-only && \
+    helm2 plugin install https://github.com/databus23/helm-diff --version ${HELMDIFF_VERSION} && \
+    helm plugin install https://github.com/databus23/helm-diff --version ${HELMDIFF_VERSION} && \
+    alias helmfile2="helmfile --helm-binary helm2"
 
 WORKDIR /home/dadsgarage
 
