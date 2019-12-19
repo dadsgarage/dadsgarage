@@ -45,8 +45,8 @@ RUN  sed -i 's/^PASS_MAX_DAYS.*/PASS_MAX_DAYS    90/' /etc/login.defs \
 
 # Add Tini. Ref: https://github.com/krallin/tini
 ARG TINI_VERSION=v0.18.0
-ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
-RUN chmod +x /tini
+RUN curl -sOL https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini && \
+    chmod +x /tini
 
 # Install kubectl
 ARG KUBECTL_VERSION=1.16.3-00
