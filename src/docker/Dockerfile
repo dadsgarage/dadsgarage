@@ -96,6 +96,11 @@ RUN curl -sL https://packages.microsoft.com/keys/microsoft.asc | \
     tee -a /etc/apt/sources.list.d/azure-cli.list && \
     install_packages azure-cli=${AZURE_CLI}
 
+# Install Nodejs and NPM
+ARG NODEJS_VERSION=10.15.2~dfsg-2
+ARG NPM_VERSION=5.8.0+ds6-4
+RUN install_packages nodejs=${NODEJS_VERSION} npm=${NPM_VERSION}
+
 # Quit being root for safety.
 USER dadsgarage
 
