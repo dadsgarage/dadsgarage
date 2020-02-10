@@ -46,7 +46,7 @@ RUN  sed -i 's/^PASS_MAX_DAYS.*/PASS_MAX_DAYS    90/' /etc/login.defs \
 # Add Tini. Ref: https://github.com/krallin/tini
 ARG TINI_VERSION=v0.18.0
 RUN curl -sOL https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini && \
-    chmod +x /tini
+  chmod +x /tini
 
 # Install kubectl
 ARG KUBECTL_VERSION=1.16.3-00
@@ -63,46 +63,51 @@ RUN curl -LO https://github.com/derailed/k9s/releases/download/${K9S_VERSION}/k9
 # Install Helm 2
 ARG HELM2_VERSION=v2.16.1
 RUN curl -LO https://get.helm.sh/helm-${HELM2_VERSION}-linux-amd64.tar.gz && \
-    tar -zxvf helm-${HELM2_VERSION}-linux-amd64.tar.gz && \
-    mv linux-amd64/helm /usr/local/bin/helm2 && \
-    chmod +x /usr/local/bin/helm2 && \
-    rm -rf linux-amd64 helm-${HELM2_VERSION}-linux-amd64.tar.gz
+  tar -zxvf helm-${HELM2_VERSION}-linux-amd64.tar.gz && \
+  mv linux-amd64/helm /usr/local/bin/helm2 && \
+  chmod +x /usr/local/bin/helm2 && \
+  rm -rf linux-amd64 helm-${HELM2_VERSION}-linux-amd64.tar.gz
 
 # Install Helm 3
 ARG HELM3_VERSION=v3.0.2
 RUN curl -LO https://get.helm.sh/helm-${HELM3_VERSION}-linux-amd64.tar.gz && \
-    tar -zxvf helm-${HELM3_VERSION}-linux-amd64.tar.gz && \
-    mv linux-amd64/helm /usr/local/bin/helm && \
-    chmod +x /usr/local/bin/helm && \
-    rm -rf linux-amd64 helm-${HELM3_VERSION}-linux-amd64.tar.gz
+  tar -zxvf helm-${HELM3_VERSION}-linux-amd64.tar.gz && \
+  mv linux-amd64/helm /usr/local/bin/helm && \
+  chmod +x /usr/local/bin/helm && \
+  rm -rf linux-amd64 helm-${HELM3_VERSION}-linux-amd64.tar.gz
 
 # Install helmfile
 ARG HELMFILE_VERSION=v0.97.0
 RUN curl -sOL https://github.com/roboll/helmfile/releases/download/${HELMFILE_VERSION}/helmfile_linux_amd64 && \
-    chmod +x ./helmfile_linux_amd64 && \
-    mv helmfile_linux_amd64 /usr/local/bin/helmfile
+  chmod +x ./helmfile_linux_amd64 && \
+  mv helmfile_linux_amd64 /usr/local/bin/helmfile
 
 # Install Terraform
 ARG TERRAFORM_VERSION=0.12.19
 RUN curl -sOL https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
-    unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin/ && \
-    rm -f terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+  unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin/ && \
+  rm -f terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 
 # Install Azure cli
 ARG AZURE_CLI=2.0.78-1~buster
 RUN curl -sL https://packages.microsoft.com/keys/microsoft.asc | \
-    gpg --dearmor > /etc/apt/trusted.gpg.d/microsoft.asc.gpg && \
-    echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ buster main" | \
-    tee -a /etc/apt/sources.list.d/azure-cli.list && \
-    install_packages azure-cli=${AZURE_CLI}
-
-# Install Nodejs and NPM
-ARG NODEJS_VERSION=10.15.2~dfsg-2
-ARG NPM_VERSION=5.8.0+ds6-4
-RUN install_packages nodejs=${NODEJS_VERSION} npm=${NPM_VERSION}
+  gpg --dearmor > /etc/apt/trusted.gpg.d/microsoft.asc.gpg && \
+  echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ buster main" | \
+  tee -a /etc/apt/sources.list.d/azure-cli.list && \
+  install_packages azure-cli=${AZURE_CLI}
 
 # Quit being root for safety.
 USER dadsgarage
+
+# Install Node Version Manager, NodeJS, and NPM
+ARG NVM_VERSION=0.35.2
+ARG NODE_VERSION=node
+RUN git clone https://github.com/nvm-sh/nvm.git $HOME/.nvm --depth 1 --branch v${NVM_VERSION} && \
+  echo 'export NVM_DIR="$HOME/.nvm"' >> $HOME/.bashrc && \
+  echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm' >> $HOME/.bashrc && \
+  echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion' >> $HOME/.bashrc && \
+  \. "$HOME/.nvm/nvm.sh" && \
+  nvm install ${NODE_VERSION}
 
 # Install pipx for safer pip installations of tools. Ref: https://pipxproject.github.io/pipx/
 ENV PATH="${PATH}:/home/dadsgarage/.local/bin"
@@ -120,8 +125,8 @@ RUN pipx install awscli==${AWS_CLI_VERSION}
 # helm 2 setup
 ARG HELMDIFF_VERSION=v3.0.0-rc.7
 RUN helm2 init --client-only && \
-    helm2 plugin install https://github.com/databus23/helm-diff --version ${HELMDIFF_VERSION} && \
-    alias helmfile2="helmfile --helm-binary helm2"
+  helm2 plugin install https://github.com/databus23/helm-diff --version ${HELMDIFF_VERSION} && \
+  alias helmfile2="helmfile --helm-binary helm2"
 
 # helm 3 setup
 RUN helm plugin install https://github.com/databus23/helm-diff --version ${HELMDIFF_VERSION}
