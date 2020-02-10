@@ -82,7 +82,6 @@ The following is a mostly complete list of the software installed in Dad's Garag
 - [jq](https://packages.debian.org/buster/jq) ([docs](https://stedolan.github.io/jq))
 - [libaio1](https://packages.debian.org/buster/gosu)
 - [locales](https://packages.debian.org/buster/locales)
-- [npm](https://packages.debian.org/buster/npm)
 - [openssh-client](https://packages.debian.org/buster/openssh-client)
 - [pkg-config](https://packages.debian.org/buster/pkg-config)
 - [procps](https://packages.debian.org/buster/procps)
