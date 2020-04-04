@@ -1,0 +1,41 @@
+version: "1.0"
+
+stages:
+  - "clone"
+  - "validate"
+  - "build"
+  - "test"
+
+steps:
+  clone:
+    title: "Cloning repository"
+    type: "git-clone"
+    repo: "dadsgarage/dadsgarage"
+    revision: "${{CF_BRANCH}}"
+    git: "github"
+    stage: "clone"
+
+  validate_pre_commit:
+    title: "Validating pre-commit hooks"
+    type: "rothandrew/pre-commit"
+    stage: "validate"
+    arguments:
+      working_directory: "/codefresh/volume/${{CF_REPO_NAME}}"
+
+  build:
+    title: "Building Docker image"
+    type: "build"
+    image_name: "dadsgarage/dadsgarage"
+    working_directory: "${{clone}}"
+    tag: "${{CF_BRANCH_TAG_NORMALIZED}}"
+    dockerfile: "src/docker/Dockerfile"
+    stage: "build"
+
+  test:
+    title: "Running test"
+    type: "freestyle" # Run any command
+    image: "ubuntu:latest" # The image in which command will be executed
+    working_directory: "${{clone}}" # Running command where code cloned
+    commands:
+      - "ls"
+    stage: "test"

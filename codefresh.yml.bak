@@ -1,0 +1,36 @@
+version: "1.0"
+stages:
+  - "clone"
+steps:
+  clone:
+    title: "Cloning repository"
+    type: "git-clone"
+    repo: "RothAndrew/terraform-hcloud-rancher-management-cluster"
+    revision: "${{CF_BRANCH}}"
+    git: "github"
+    stage: "clone"
+  main_clone:
+    title: "Cloning repository"
+    stage: "clone"
+    type: "git-clone"
+    arguments:
+      repo: "${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}"
+      git: github
+      revision: "${{CF_REVISION}}"
+  parallel_tests:
+    title: Running tests
+    stage: test
+    type: parallel
+    steps:
+      docker_build:
+        title: Ensuring docker image is buildable
+        type: build
+        image_name: "${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}"
+        tag: "${{CF_REVISION}}"
+        working_directory: "${{main_clone}}/src/docker"
+      pre_commit:
+        type: rothandrew/pre-commit
+        title: Validating pre-commit hooks
+        stage: Validate
+        arguments:
+          working_directory: "/codefresh/volume/${{CF_REPO_NAME}}"
