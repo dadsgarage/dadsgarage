@@ -19,7 +19,7 @@ steps:
     type: "rothandrew/pre-commit"
     stage: "validate"
     arguments:
-      working_directory: "${{clone}}"
+      working_directory: "/codefresh/volume/${{CF_REPO_NAME}}"
 
   build:
     title: "Building Docker image"
