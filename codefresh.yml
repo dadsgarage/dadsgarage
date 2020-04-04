@@ -19,12 +19,12 @@ steps:
     type: "rothandrew/pre-commit"
     stage: "validate"
     arguments:
-      working_directory: "/codefresh/volume/${{CF_REPO_NAME}}"
+      working_directory: "${{clone}}"
 
   build:
     title: "Building Docker image"
     type: "build"
     stage: "build"
     image_name: "dadsgarage/dadsgarage"
-    working_directory: "src/docker"
+    working_directory: "${{clone}}/src/docker"
     tag: "${{CF_BRANCH_TAG_NORMALIZED}}"
