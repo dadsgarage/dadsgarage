@@ -4,7 +4,6 @@ stages:
   - "clone"
   - "validate"
   - "build"
-  - "test"
 
 steps:
   clone:
@@ -25,17 +24,7 @@ steps:
   build:
     title: "Building Docker image"
     type: "build"
-    image_name: "dadsgarage/dadsgarage"
-    working_directory: "${{clone}}"
-    tag: "${{CF_BRANCH_TAG_NORMALIZED}}"
-    dockerfile: "src/docker/Dockerfile"
     stage: "build"
-
-  test:
-    title: "Running test"
-    type: "freestyle" # Run any command
-    image: "ubuntu:latest" # The image in which command will be executed
-    working_directory: "${{clone}}" # Running command where code cloned
-    commands:
-      - "ls"
-    stage: "test"
+    image_name: "dadsgarage/dadsgarage"
+    working_directory: "src/docker"
+    tag: "${{CF_BRANCH_TAG_NORMALIZED}}"
