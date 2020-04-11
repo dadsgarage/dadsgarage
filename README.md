@@ -98,8 +98,7 @@ The following is a mostly complete list of the software installed in Dad's Garag
 - [k9s](https://github.com/derailed/k9s)
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/)
 - [pipx](https://github.com/pipxproject/pipx)
-- [helm 2](https://v2.helm.sh/docs/)
-- [helm 3](https://helm.sh/docs/)
+- [helm](https://helm.sh/docs/)
 - [pre-commit](https://pre-commit.com/)
 - [terraform](https://www.terraform.io/docs/commands/index.html)
 - [tini](https://github.com/krallin/tini)
@@ -117,5 +116,3 @@ Pull requests are welcome! If you are going to contribute to this project you sh
 Pull Requests are not automatically run through the Codefresh pipeline. A maintainer must put `/test` in a comment on the PR for the pipeline run to trigger.
 
 Public build logs for Pull Request pipelines can be found [here](https://g.codefresh.io/public/accounts/rothandrew/pipelines/5dd4666e751f051a7ff8666e).
-
-The repo that contains the codefresh YAML pipeline for this project is [here](https://github.com/dadsgarage/cf-pipelines).
