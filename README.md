@@ -93,11 +93,11 @@ The following is a mostly complete list of the software installed in Dad's Garag
 
 ### Other
 
+- [asdf](https://asdf-vm.com)
 - [aws-cli](https://aws.amazon.com/cli/)
 - [azure-cli](https://docs.microsoft.com/en-us/cli/azure/get-started-with-azure-cli)
 - [k9s](https://github.com/derailed/k9s)
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/)
-- [pipx](https://github.com/pipxproject/pipx)
 - [helm](https://helm.sh/docs/)
 - [pre-commit](https://pre-commit.com/)
 - [terraform](https://www.terraform.io/docs/commands/index.html)
