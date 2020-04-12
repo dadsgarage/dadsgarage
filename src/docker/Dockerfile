@@ -171,6 +171,12 @@ RUN asdf plugin add k9s \
   && asdf global k9s "${K9S_VERSION}" \
   && rm -rf /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
 
+# Support asdf when running as root user
+USER root
+ENV ASDF_DATA_DIR="/home/dadsgarage/.asdf"
+RUN cp /home/dadsgarage/.tool-versions /root/.tool-versions
+USER dadsgarage
+
 WORKDIR /home/dadsgarage
 
 ENTRYPOINT ["/tini", "--"]
