@@ -157,6 +157,13 @@ RUN asdf plugin add terraform-docs \
   && asdf global terraform-docs "${TERRAFORM_DOCS_VERSION}" \
   && rm -rf /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
 
+# Install terraform-docs. Get versions using 'asdf list all tflint'.
+ARG TFLINT_VERSION="0.15.4"
+RUN asdf plugin add tflint \
+  && asdf install tflint "${TFLINT_VERSION}" \
+  && asdf global tflint "${TFLINT_VERSION}" \
+  && rm -rf /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
+
 # Install k9s. Get versions using 'asdf list all k9s'.
 ARG K9S_VERSION="0.19.1"
 RUN asdf plugin add k9s \
