@@ -150,6 +150,13 @@ RUN asdf plugin add terraform \
   && asdf global terraform "${TERRAFORM_VERSION}" \
   && rm -rf /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
 
+# Install terraform-docs. Get versions using 'asdf list all terraform-docs'.
+ARG TERRAFORM_DOCS_VERSION="v0.9.1"
+RUN asdf plugin add terraform-docs \
+  && asdf install terraform-docs "${TERRAFORM_DOCS_VERSION}" \
+  && asdf global terraform-docs "${TERRAFORM_DOCS_VERSION}" \
+  && rm -rf /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
+
 # Install k9s. Get versions using 'asdf list all k9s'.
 ARG K9S_VERSION="0.19.1"
 RUN asdf plugin add k9s \

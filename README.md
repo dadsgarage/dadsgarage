@@ -102,6 +102,7 @@ The following is a mostly complete list of the software installed in Dad's Garag
 - [nodejs](https://nodejs.org/) and [npm](https://www.npmjs.com/)
 - [pre-commit](https://pre-commit.com/)
 - [terraform](https://www.terraform.io/docs/commands/index.html)
+- [terraform-docs](https://github.com/segmentio/terraform-docs)
 - [tini](https://github.com/krallin/tini)
 
 ## asdf
