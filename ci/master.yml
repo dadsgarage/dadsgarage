@@ -1,0 +1,30 @@
+version: "1.0"
+
+stages:
+  - "clone"
+  - "validate"
+  - "build"
+
+steps:
+  clone:
+    title: "Cloning repository"
+    type: "git-clone"
+    repo: "dadsgarage/dadsgarage"
+    revision: "${{CF_BRANCH}}"
+    git: "github"
+    stage: "clone"
+
+  validate_pre_commit:
+    title: "Validating pre-commit hooks"
+    type: "rothandrew/pre-commit"
+    stage: "validate"
+    arguments:
+      working_directory: "/codefresh/volume/${{CF_REPO_NAME}}"
+
+  build:
+    title: "Building Docker image"
+    type: "build"
+    stage: "build"
+    image_name: "dadsgarage/dadsgarage"
+    working_directory: "${{clone}}/src/docker"
+    tag: edge
