@@ -103,6 +103,10 @@ The following is a mostly complete list of the software installed in Dad's Garag
 - [terraform](https://www.terraform.io/docs/commands/index.html)
 - [tini](https://github.com/krallin/tini)
 
+## asdf
+
+A lot of the tools are installed using [asdf](https://asdf-vm.com). `asdf` makes it really easy to use a certain version of a tool. One downside is that since it uses shims you have to reshim if you install other executables. For example, if you `pip install foobar` you have to then run `asdf reshim python` for `foobar` to be found in `$PATH`.
+
 ## Contributing
 
 Pull requests are welcome! If you are going to contribute to this project you should
