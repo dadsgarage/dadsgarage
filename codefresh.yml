@@ -28,3 +28,4 @@ steps:
     image_name: "dadsgarage/dadsgarage"
     working_directory: "${{clone}}/src/docker"
     tag: "${{CF_BRANCH_TAG_NORMALIZED}}"
+    disable_push: true
