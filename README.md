@@ -103,6 +103,7 @@ The following is a mostly complete list of the software installed in Dad's Garag
 - [pre-commit](https://pre-commit.com/)
 - [terraform](https://www.terraform.io/docs/commands/index.html)
 - [terraform-docs](https://github.com/segmentio/terraform-docs)
+- [tflint](https://github.com/terraform-linters/tflint)
 - [tini](https://github.com/krallin/tini)
 
 ## asdf
