@@ -97,6 +97,14 @@ RUN asdf plugin add python \
   && asdf global python "${PYTHON_VERSION}" \
   && rm -rf /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
 
+# Install nodejs. Get versions using 'asdf list all nodejs'
+ARG NODEJS_VERSION="12.16.1"
+RUN asdf plugin add nodejs \
+  && bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring \
+  && asdf install nodejs "${NODEJS_VERSION}" \
+  && asdf global nodejs "${NODEJS_VERSION}" \
+  && rm -rf /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
+
 # Install kubectl. Get versions using 'asdf list all kubectl'
 ARG KUBECTL_VERSION="1.17.4"
 RUN asdf plugin add kubectl \

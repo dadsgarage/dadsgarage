@@ -99,6 +99,7 @@ The following is a mostly complete list of the software installed in Dad's Garag
 - [k9s](https://github.com/derailed/k9s)
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/)
 - [helm](https://helm.sh/docs/)
+- [nodejs](https://nodejs.org/) and [npm](https://www.npmjs.com/)
 - [pre-commit](https://pre-commit.com/)
 - [terraform](https://www.terraform.io/docs/commands/index.html)
 - [tini](https://github.com/krallin/tini)
