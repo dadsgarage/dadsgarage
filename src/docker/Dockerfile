@@ -80,7 +80,7 @@ RUN curl -sL https://packages.microsoft.com/keys/microsoft.asc | \
 USER dadsgarage
 
 # Install asdf. Get versions from https://github.com/asdf-vm/asdf/releases
-ARG ASDF_VERSION="0.7.7"
+ARG ASDF_VERSION="0.8.0"
 # hadolint ignore=SC2016
 RUN git clone --branch "v${ASDF_VERSION}" --depth 1 https://github.com/asdf-vm/asdf.git "${HOME}/.asdf" \
   && echo -e '\nsource $HOME/.asdf/asdf.sh' >> "${HOME}/.bashrc" \
@@ -162,6 +162,13 @@ ARG TFLINT_VERSION="0.15.4"
 RUN asdf plugin add tflint \
   && asdf install tflint "${TFLINT_VERSION}" \
   && asdf global tflint "${TFLINT_VERSION}" \
+  && rm -rf /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
+
+# Install tfsec. Get versions using 'asdf list all tfsec'.
+ARG TFSEC_VERSION="0.30.1"
+RUN asdf plugin add tfsec \
+  && asdf install tfsec "${TFSEC_VERSION}" \
+  && asdf global tfsec "${TFSEC_VERSION}" \
   && rm -rf /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
 
 # Install k9s. Get versions using 'asdf list all k9s'.
