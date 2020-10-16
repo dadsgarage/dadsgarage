@@ -178,6 +178,14 @@ RUN asdf plugin add k9s \
   && asdf global k9s "${K9S_VERSION}" \
   && rm -rf /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
 
+# Install go-task. Get versions from https://github.com/go-task/task/releases
+ARG GO_TASK_VERSION="2.8.1"
+# hadolint ignore=DL3003
+RUN wget -O /root/task.tar.gz "https://github.com/go-task/task/releases/download/v${GO_TASK_VERSION}/task_linux_amd64.tar.gz" \
+  && (cd /usr/local/bin && tar -xzvf /root/task.tar.gz task) \
+  && rm -f /root/task.tar.gz \
+  && rm -rf /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
+
 # Support asdf when running as root user
 USER root
 ENV ASDF_DATA_DIR="/home/dadsgarage/.asdf"
