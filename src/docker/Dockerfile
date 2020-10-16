@@ -76,6 +76,15 @@ RUN curl -sL https://packages.microsoft.com/keys/microsoft.asc | \
     tee -a /etc/apt/sources.list.d/azure-cli.list && \
     install_packages azure-cli=${AZURE_CLI}
 
+# Install go-task. Get versions from https://github.com/go-task/task/releases
+ARG GO_TASK_VERSION="2.8.1"
+# hadolint ignore=DL3003
+RUN curl -sL -o /root/task.tar.gz "https://github.com/go-task/task/releases/download/v${GO_TASK_VERSION}/task_linux_amd64.tar.gz" \
+  && (cd /usr/local/bin && tar -xzvf /root/task.tar.gz task) \
+  && chmod +x /usr/local/bin/task \
+  && rm -f /root/task.tar.gz \
+  && rm -rf /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
+
 # Quit being root for safety.
 USER dadsgarage
 
