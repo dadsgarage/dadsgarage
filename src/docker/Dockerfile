@@ -141,7 +141,7 @@ RUN helm plugin install https://github.com/aslafy-z/helm-git.git --version "${HE
   && rm -rf /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
 
 # Install pre-commit. Get versions using 'pip install pre-commit=='
-ARG PRE_COMMIT_VERSION="2.1.1"
+ARG PRE_COMMIT_VERSION="2.7.1"
 RUN pip install "pre-commit==${PRE_COMMIT_VERSION}" \
   && asdf reshim python \
   && rm -rf /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
