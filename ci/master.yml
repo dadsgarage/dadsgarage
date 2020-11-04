@@ -8,7 +8,7 @@ steps:
   clone:
     title: "Cloning repository"
     type: "git-clone"
-    repo: "dadsgarage/dadsgarage:0.3.5"
+    repo: "dadsgarage/dadsgarage"
     revision: "${{CF_BRANCH}}"
     git: "github"
     stage: "clone"
@@ -17,6 +17,6 @@ steps:
     title: "Building Docker image"
     type: "build"
     stage: "build"
-    image_name: "dadsgarage/dadsgarage:0.3.5"
+    image_name: "dadsgarage/dadsgarage"
     working_directory: "${{clone}}/src/docker"
     tag: edge
