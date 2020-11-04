@@ -85,6 +85,14 @@ RUN curl -sL -o /root/task.tar.gz "https://github.com/go-task/task/releases/down
   && rm -f /root/task.tar.gz \
   && rm -rf /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
 
+# Install shellcheck. Get versions from https://github.com/koalaman/shellcheck/releases
+ARG SHELLCHECK_VERSION="0.7.1"
+# hadolint ignore=DL3003
+RUN curl -sL -o /root/shellcheck.tar.xz "https://github.com/koalaman/shellcheck/releases/download/v${SHELLCHECK_VERSION}/shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz" \
+  && (cd /usr/local/bin && tar -xJvf /root/shellcheck.tar.xz --strip-components=1 "shellcheck-v${SHELLCHECK_VERSION}/shellcheck") \
+  && rm -f /root/shellcheck.tar.xz \
+  && rm -rf /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
+
 # Quit being root for safety.
 USER dadsgarage
 
