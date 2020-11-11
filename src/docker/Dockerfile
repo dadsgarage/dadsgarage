@@ -93,6 +93,12 @@ RUN curl -sL -o /root/shellcheck.tar.xz "https://github.com/koalaman/shellcheck/
   && rm -f /root/shellcheck.tar.xz \
   && rm -rf /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
 
+# Install hadolint. Get versions from https://github.com/hadolint/hadolint/releases
+ARG HADOLINT_VERSION="1.18.0"
+RUN curl -sL -o /usr/local/bin/hadolint "https://github.com/hadolint/hadolint/releases/download/v${HADOLINT_VERSION}/hadolint-Linux-x86_64" \
+  && chmod +x /usr/local/bin/hadolint \
+  && rm -rf /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
+
 # Quit being root for safety.
 USER dadsgarage
 
