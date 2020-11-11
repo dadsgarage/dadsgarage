@@ -95,7 +95,7 @@ RUN curl -sL -o /root/shellcheck.tar.xz "https://github.com/koalaman/shellcheck/
 
 # Install hadolint. Get versions from https://github.com/hadolint/hadolint/releases
 ARG HADOLINT_VERSION="1.18.0"
-RUN wget -O /usr/local/bin/hadolint "https://github.com/hadolint/hadolint/releases/download/v${HADOLINT_VERSION}/hadolint-Linux-x86_64" \
+RUN curl -sL -o /usr/local/bin/hadolint "https://github.com/hadolint/hadolint/releases/download/v${HADOLINT_VERSION}/hadolint-Linux-x86_64" \
   && chmod +x /usr/local/bin/hadolint \
   && rm -rf /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
 
